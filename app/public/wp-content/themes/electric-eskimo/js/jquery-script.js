@@ -1,26 +1,25 @@
-var donutCount = 10
-var spotCount = 13
-var rodCount = 8
-var confettiCount = donutCount + spotCount + rodCount
-var windowWidth = jQuery( window ).width() 
-var windowHeight = jQuery( window ).height() 
-var height
-var width
-var size 
-var border = 50
-var color
+var donutCount = 10;
+var spotCount = 13;
+var rodCount = 8;
+var confettiCount = donutCount + spotCount + rodCount;
+var windowWidth = jQuery( window ).width();
+var windowHeight = jQuery( window ).height();
+var height;
+var width;
+var size ;
+var border = 50;
+var color;
 
 window.onload = function(){
-  size = (jQuery(window).width() - border) / 4 
-  makeConfetti(donutCount, "donut")
-  makeConfetti(spotCount, "spot")
-  makeConfetti(rodCount, "rod")
-  makeConfetti(spotCount, "spotblur")
-  makeConfetti(rodCount, "rodblur")
+  size = (jQuery(window).width() - border) / 4;
+  makeConfetti(donutCount, "donut");
+  makeConfetti(spotCount, "spot");
+  makeConfetti(rodCount, "rod");
+  makeConfetti(spotCount, "spotblur");
+  makeConfetti(rodCount, "rodblur");
   // parallax(jQuery(".post .post-thumbnail img"), -3);
-  createHoverOverPostEffect(jQuery(".script-post"), 4)  
-  createHoverOverImageEffect(jQuery(".page-print .wp-block-image"), 4)
-  cycleThroughMenuItems()
+  createHoverOverPostEffect(jQuery(".script-post"), 4);
+  createHoverOverImageEffect(jQuery(".page-print .wp-block-image"), 4);
 // 
 styleHTML('/');
 styleHTML('<'); 
@@ -33,22 +32,22 @@ makePixels('#second-section', 9, 6, 3, 50);
 
 jQuery(window).resize(function(){
   size = (jQuery(window).width() - border)  / 4
-  createHoverOverPostEffect(jQuery(".script-post"))  
-  setImageCSS(jQuery(".script-post"), size)
-  createHoverOverImageEffect(jQuery(".page-print .wp-block-image"), 4)
+  createHoverOverPostEffect(jQuery(".script-post"));
+  setImageCSS(jQuery(".script-post"), size);
+  createHoverOverImageEffect(jQuery(".page-print .wp-block-image"), 4);
 
 })
 
 //  - - - - splits header into two separate words so that second word can be re-styled - - - - 
 
 jQuery(document).ready(function(){
-  var title = jQuery('.site-title a')
-  var text = title.text().split(' ')
-  var last = text.pop()
+  var title = jQuery('.site-title a');
+  var text = title.text().split(' ');
+  var last = text.pop();
   title.html([text, ' <span class="last-word">', last, '</span>'].join(''));
 
   setTimeout(function(){title.parent().fadeIn('slow'); }, 1000);
-})
+});
 
 //  - - - - posts - - - - 
 
@@ -62,7 +61,7 @@ jQuery(document).ready(function(){
 
 
 function setImageCSS(post, size, filter, mode){
-  jQuery(post).find('img').css({'filter': filter, 'height': size+'px', 'width': size+'px'})
+  jQuery(post).find('img').css({'filter': filter, 'height': size+'px', 'width': size+'px'});
 }
 
 //  - - - - creates hover over posts to change text and image styling - - - - 
@@ -76,16 +75,16 @@ function createHoverOverPostEffect(post, divisible){
     if (windowWidth > 600){
 
       post.mouseover(function(){
-        jQuery(this).find('.script-post-thumbnail').addClass('vignette')
+        jQuery(this).find('.script-post-thumbnail').addClass('vignette');
         size = (jQuery(window).width() - border) / divisible + 20
-        setImageCSS(this, size, "none")
-        jQuery(this).find('a').css({'color': 'white'})
+        setImageCSS(this, size, "none");
+        jQuery(this).find('a').css({'color': 'white'});
       });
       post.mouseout(function(){
         size = (jQuery(window).width() - border) / divisible
-        setImageCSS(this, size, "grayscale(1)")
-        jQuery(this).find('a').css({'color': 'black'})
-        jQuery(this).find('.script-post-thumbnail').removeClass('vignette')
+        setImageCSS(this, size, "grayscale(1)");
+        jQuery(this).find('a').css({'color': 'black'});
+        jQuery(this).find('.script-post-thumbnail').removeClass('vignette');
       });
     }
   });
@@ -94,30 +93,30 @@ function createHoverOverPostEffect(post, divisible){
 //  - - - - creates hover over images to change text and image styling - - - - 
 
 function setFigcaptionCSS(post, addClass, opacity){
-  jQuery(post).find('figcaption').addClass(addClass).css({'opacity': opacity})
+  jQuery(post).find('figcaption').addClass(addClass).css({'opacity': opacity});
 }
 
 function createHoverOverImageEffect(post, divisible){
   if (windowWidth > 600){
     size = (jQuery(window).width()) / divisible;
 
-    setImageCSS(post, size)
-    post.find('img').css({'height': height+'px', 'width': height+'px'})
-    color = post.css('background-color')
+    setImageCSS(post, size);
+    post.find('img').css({'height': height+'px', 'width': height+'px'});
+    color = post.css('background-color');
     post.mouseover(function(){
       size = (jQuery(window).width()) / divisible + 12
-      setImageCSS(this, size, "none")
-      color = jQuery(this).css('background-color')
-      jQuery(this).css({'background-color': 'white'})
-      setImageCSS(this, size, "grayscale(0)")
-      setFigcaptionCSS(this, 'figcaption-show', 1)
+      setImageCSS(this, size, "none");
+      color = jQuery(this).css('background-color');
+      jQuery(this).css({'background-color': 'white'});
+      setImageCSS(this, size, "grayscale(0)");
+      setFigcaptionCSS(this, 'figcaption-show', 1);
     });
     post.mouseout(function(){
       size = (jQuery(window).width()) / divisible
-      setImageCSS(this, size, "none")
-      jQuery(this).css({'background-color': color})
-      setImageCSS(this, size, "grayscale(1)")
-      setFigcaptionCSS(this, 'figcaption-show', 0)
+      setImageCSS(this, size, "none");
+      jQuery(this).css({'background-color': color});
+      setImageCSS(this, size, "grayscale(1)");
+      setFigcaptionCSS(this, 'figcaption-show', 0);
     });
   }
 }
@@ -127,12 +126,12 @@ function createHoverOverImageEffect(post, divisible){
 jQuery(function() {
   jQuery('figcaption').click(function(event){
     if (windowWidth > 600){
-      var post = jQuery(this).parent()
-      post.find('img').removeAttr('style')
-      var clone = post.clone().removeClass('wp-block-image').addClass('lightbox').prependTo('.entry-content').hide().fadeIn()
-      var button = jQuery('<div class="close-button"><div class="line-1"></div><div class="line-2"></div></div>').appendTo(clone)
-      jQuery('.lightbox .figcaption-show').removeClass('figcaption-show').addClass('figcaption-clone')
-      closeTheLightbox()
+      var post = jQuery(this).parent();
+      post.find('img').removeAttr('style');
+      var clone = post.clone().removeClass('wp-block-image').addClass('lightbox').prependTo('.entry-content').hide().fadeIn();
+      var button = jQuery('<div class="close-button"><div class="line-1"></div><div class="line-2"></div></div>').appendTo(clone);
+      jQuery('.lightbox .figcaption-show').removeClass('figcaption-show').addClass('figcaption-clone');
+      closeTheLightbox();
     }
   });
 });
@@ -141,7 +140,7 @@ jQuery(function() {
 
 function closeTheLightbox(){
   jQuery('.close-button').click(function(event){
-    var post = jQuery(this).parent().fadeOut('slow', jQuery(this).parent().remove())
+    var post = jQuery(this).parent().fadeOut('slow', jQuery(this).parent().remove());
   });
 }
 
@@ -149,13 +148,13 @@ function closeTheLightbox(){
 
 function makeConfetti(count, shape){
   for (i = 0; i < count; i++) {
-    var x = randomNumberWindowWidth()
-    var y = randomNumberWindowHeight()
-    var z = rotateConfetti()
+    var x = randomNumberWindowWidth();
+    var y = randomNumberWindowHeight();
+    var z = rotateConfetti();
     var setShapeID = shape + i;
-    jQuery('#confetti').append('<div class="' + shape + ' confettiShape" id="' + setShapeID + '"></div>')
-    jQuery('#' + setShapeID + '').css({'top': y, 'left': x, 'transform': 'rotate(' + z + 'deg)'})
-    animate(setShapeID)
+    jQuery('#confetti').append('<div class="' + shape + ' confettiShape" id="' + setShapeID + '"></div>');
+    jQuery('#' + setShapeID + '').css({'top': y, 'left': x, 'transform': 'rotate(' + z + 'deg)'});
+    animate(setShapeID);
   }
 }
 
@@ -166,29 +165,29 @@ function makeConfetti(count, shape){
 
 
 function randomNumberWindowWidth(){
-  return Math.floor(Math.random() * windowWidth + 1)
+  return Math.floor(Math.random() * windowWidth + 1);
 }
 
 function randomNumberWindowHeight(){
-  return Math.floor(Math.random() * windowHeight + 1)
+  return Math.floor(Math.random() * windowHeight + 1);
 }
 
 function rotateConfetti(){
-  return Math.floor(Math.random() * 360 + 1)
+  return Math.floor(Math.random() * 360 + 1);
 }
 
 function animate(shapeID){
-  var x = randomNumberWindowWidth()
-  var y = randomNumberWindowHeight()
+  var x = randomNumberWindowWidth();
+  var y = randomNumberWindowHeight();
   jQuery('#' + shapeID + '').animate({'left': x, 'top': y}, 1000000, 'linear');
 };
 
 jQuery(function() {
-  jQuery('#confetti-wrapper').prepend('<div id="navigation-area" class="closed"><div class="nav-list"></div></div>')
+  jQuery('#confetti-wrapper').prepend('<div id="navigation-area" class="closed"><div class="nav-list"></div></div>');
 })
 
 jQuery(function() {
-  jQuery('#confetti-wrapper').append('<div id="border"></div>')
+  jQuery('#confetti-wrapper').append('<div id="border"></div>');
 })
 
 
@@ -216,7 +215,7 @@ function parallax(object, speed){
     var scrollPosition = win.scrollTop();
     var visibleArea = win.scrollTop() + win.height();
     var objectEndPosition = (obj.offset().top + obj.outerHeight());
-    var trueFalse = (visibleArea >= objectEndPosition && scrollPosition <= objectEndPosition ? true : false)
+    var trueFalse = (visibleArea >= objectEndPosition && scrollPosition <= objectEndPosition ? true : false);
     if (trueFalse == true){
       var doc = jQuery(document).scrollTop();
       var objTop = jQuery(obj).position().top;
@@ -228,24 +227,23 @@ function parallax(object, speed){
 // - - - make pixelated edging - - -
 
 function randomNumber(num1, num2){
-  return Math.floor(Math.random() * ((num1-num2)+1) + num2)
+  return Math.floor(Math.random() * ((num1-num2)+1) + num2);
 }
 
 function makePixels(location, num1, num2, i, pixelCount){
   var pixelWrapper = jQuery('<div class="pixel-wrapper" id="pixel-wrapper-'+i+'"></div>')
-  // .css({'height': windowWidth / 50, "width": windowWidth})
-  jQuery(location).append(pixelWrapper)
-  populate(pixelWrapper, num1, num2, pixelCount)
+  // .css({'height': windowWidth / 50, "width": windowWidth});
+  jQuery(location).append(pixelWrapper);
+  populate(pixelWrapper, num1, num2, pixelCount);
 }
 
 function populate(location, num1, num2, pixelCount){
-  var pixelsize = (windowWidth / pixelCount)
+  var pixelsize = (windowWidth / pixelCount);
 
-  for (i = 0; i < pixelCount; i++) {
-
+  for (i = 0; i < pixelCount; i++){
     var setPixelID = 'pixel' + i;
     var pixels = jQuery('<div class="pixel" id="' + setPixelID + '"></div>').css({"opacity": "0."+randomNumber(num1, num2) });
-    jQuery(location).append(pixels)
+    jQuery(location).append(pixels);
   }
 }
 
@@ -275,82 +273,118 @@ var captionLength = 0;
 var caption = '';
 var cursor = 'type';
 var grabbedText = '';
-var captionEl
-var menuItems = jQuery('#primary-menu')
-var int = 0
+var captionElement;
+var navigationTextArray = [];
+var navigationElemArray = [];
 
 jQuery(document).ready(function() {
   setInterval ('cursorAnimation()', 600);
-
-  jQuery('#menu-item-467').append('<span id="cursor">|</span>')
-
-
-  captionEl = jQuery('#menu-item-467 a');
-  console.log("captionEl", captionEl)
-  grabbedText = jQuery('#menu-item-467 a').text()
-  jQuery('#menu-item-467 a').text("");
-
-  jQuery('#navigation-button').click(function(){
-    if (cursor == "delete"){
-      cursor = "type";
-      caption = captionEl.html();
-      captionLength = caption.length;
-      erase();
-    }
-    else{
-      caption = '// ' + grabbedText ;
-      type();
-      cursor = "delete";
-
-    }
-  });
+  cycleThroughMenuItems();
 });
 
 function cycleThroughMenuItems(){
   jQuery('#primary-menu li a').each(function(){
-        console.log("text",jQuery(this).text())
-      });
+    navigationTextArray.push(jQuery(this).text());
+    navigationElemArray.push(jQuery(this));
+    jQuery(this).text("");
+  });
+  createMenuButton();
 }
 
+function createMenuButton(){
+  jQuery('#navigation-button').click(function(){
+    createNavigationLinks()
+  });
+}
+
+function createNavigationLinks(){
+  if (cursor == "delete"){
+    cursor = "type";
+    caption = captionElement.html();
+    captionLength = caption.length;
+    erase();
+  } 
+  else{
+    grabbedText = navigationTextArray[0];
+    captionElement = navigationElemArray[0];
+    navigationTextArray.shift();
+    console.log("before", captionElement);
+    navigationElemArray.shift();
+    console.log("after", captionElement);
+
+    caption = '// ' + grabbedText;
+    type();
+  };
+}
+
+
+// function addCursor(){
+//   jQuery('#menu-item-467').append('<span id="cursor">|</span>');
+// }
+
+// function moveCursor(){
+
+// }
+
 function type() {
-  captionEl.html(caption.substr(0, captionLength++));
-  if(captionLength < caption.length+1) {
-    setTimeout('type()', 50);
-  } else if(captionLength == caption.length+1){
-    // setTimeout('getNextWord()', 60);
-  }else {
+
+  captionElement.html(caption.substr(0, captionLength++));
+  if(captionLength < caption.length+1){
+    setTimeout('type()', 80);
+  }else if(captionLength == caption.length+1){
+    // moveCursor()
+    createNavigationLinks()
+  }else{
+    cursor = "delete";
     captionLength = 0;
     caption = '';
   }
 }
 
 function erase() {
-
-  captionEl.html(caption.substr(0, captionLength--));
-  if(captionLength >= 0) {
+  captionElement.html(caption.substr(0, captionLength--));
+  if(captionLength >= 0){
     setTimeout('erase()', 50);
-  } else {
+  }else{
     captionLength = 0;
     caption = '';
-  } 
+  };
 }
 
 function cursorAnimation() {
-  jQuery('#cursor').animate({
-    opacity: 0
+  jQuery('#primary-menu li a').css('border', '0px solid red').animate({
+    'borderWidth': '0px'
   }, 'fast', 'swing').animate({
-    opacity: 1
+    'borderWidth': '0px'
   }, 'fast', 'swing');
 }
 
-function getNextWord(){
-  captionEl = jQuery('#menu-item-466 a')
-  grabbedText = jQuery('#menu-item-466 a').text()
-  caption = '// ' + grabbedText ;
-  type();
-}
 
 
 
 
 
+
+
+
+
+
+
+
+
+
+
+// jQuery('#navigation-button').click(function(){
+//   if (cursor == "delete"){
+//     cursor = "type";
+//     caption = captionElement.html();
+//     captionLength = caption.length;
+//     erase();
+//   } 
+//   else{
+//     grabbedText = navigationArray[0][0];
+//     caption = '// ' + grabbedText ;
+//     type();
+//     cursor = "delete";
+//   }
+// });
