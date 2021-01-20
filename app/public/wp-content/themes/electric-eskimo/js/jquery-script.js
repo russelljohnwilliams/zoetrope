@@ -20,6 +20,7 @@ window.onload = function(){
   // parallax(jQuery(".post .post-thumbnail img"), -3);
   createHoverOverPostEffect(jQuery(".script-post"), 4)  
   createHoverOverImageEffect(jQuery(".page-print .wp-block-image"), 4)
+  cycleThroughMenuItems()
 // 
 styleHTML('/');
 styleHTML('<'); 
@@ -248,8 +249,6 @@ function populate(location, num1, num2, pixelCount){
   }
 }
 
-
-
 //  - - - colours the html on from page - - -
 
 function styleHTML(char){
@@ -270,28 +269,30 @@ jQuery("p:contains('"+char+"')").each(function () {
 });
 }
 
-
-
-
 // typewriter
 
 var captionLength = 0;
 var caption = '';
 var cursor = 'type';
 var grabbedText = '';
+var captionEl
+var menuItems = jQuery('#primary-menu')
+var int = 0
 
 jQuery(document).ready(function() {
   setInterval ('cursorAnimation()', 600);
 
   jQuery('#menu-item-467').append('<span id="cursor">|</span>')
-  captionEl = jQuery('#menu-item-467 a');
 
+
+  captionEl = jQuery('#menu-item-467 a');
+  console.log("captionEl", captionEl)
   grabbedText = jQuery('#menu-item-467 a').text()
-  jQuery('#menu-item-467 a').text("")
+  jQuery('#menu-item-467 a').text("");
 
   jQuery('#navigation-button').click(function(){
     if (cursor == "delete"){
-      cursor = "type"
+      cursor = "type";
       caption = captionEl.html();
       captionLength = caption.length;
       erase();
@@ -299,17 +300,25 @@ jQuery(document).ready(function() {
     else{
       caption = '// ' + grabbedText ;
       type();
-      cursor = "delete"
+      cursor = "delete";
+
     }
   });
 });
 
+function cycleThroughMenuItems(){
+  jQuery('#primary-menu li a').each(function(){
+        console.log("text",jQuery(this).text())
+      });
+}
 
 function type() {
   captionEl.html(caption.substr(0, captionLength++));
   if(captionLength < caption.length+1) {
     setTimeout('type()', 50);
-  } else {
+  } else if(captionLength == caption.length+1){
+    // setTimeout('getNextWord()', 60);
+  }else {
     captionLength = 0;
     caption = '';
   }
@@ -333,6 +342,15 @@ function cursorAnimation() {
     opacity: 1
   }, 'fast', 'swing');
 }
+
+function getNextWord(){
+  captionEl = jQuery('#menu-item-466 a')
+  grabbedText = jQuery('#menu-item-466 a').text()
+  caption = '// ' + grabbedText ;
+  type();
+}
+
+
 
 
 
