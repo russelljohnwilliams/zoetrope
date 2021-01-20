@@ -273,12 +273,11 @@ var captionLength = 0;
 var caption = '';
 var cursor = 'type';
 var grabbedText = '';
-var captionElement;
+var captionElement ='';
 var navigationTextArray = [];
 var navigationElemArray = [];
 
 jQuery(document).ready(function() {
-  setInterval ('cursorAnimation()', 600);
   cycleThroughMenuItems();
 });
 
@@ -305,35 +304,25 @@ function createNavigationLinks(){
     erase();
   } 
   else{
+    addCursor(navigationElemArray[0])
     grabbedText = navigationTextArray[0];
-    captionElement = navigationElemArray[0];
     navigationTextArray.shift();
-    console.log("before", captionElement);
-    navigationElemArray.shift();
-    console.log("after", captionElement);
-
+    captionElement = navigationElemArray[0];
     caption = '// ' + grabbedText;
     type();
+
   };
 }
 
-
-// function addCursor(){
-//   jQuery('#menu-item-467').append('<span id="cursor">|</span>');
-// }
-
-// function moveCursor(){
-
-// }
-
 function type() {
-
   captionElement.html(caption.substr(0, captionLength++));
   if(captionLength < caption.length+1){
-    setTimeout('type()', 80);
+    setTimeout('type()', 180);
   }else if(captionLength == caption.length+1){
-    // moveCursor()
-    createNavigationLinks()
+    removeCursor(navigationElemArray[0])
+    navigationElemArray.shift();
+    captionLength = 0;
+    createNavigationLinks();
   }else{
     cursor = "delete";
     captionLength = 0;
@@ -351,40 +340,11 @@ function erase() {
   };
 }
 
-function cursorAnimation() {
-  jQuery('#primary-menu li a').css('border', '0px solid red').animate({
-    'borderWidth': '0px'
-  }, 'fast', 'swing').animate({
-    'borderWidth': '0px'
-  }, 'fast', 'swing');
+function removeCursor(elem){
+  elem.css({"border-right": "0"})
 }
 
+function addCursor(elem){
+  elem.css({"border-right": "8px solid red"})
+}
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// jQuery('#navigation-button').click(function(){
-//   if (cursor == "delete"){
-//     cursor = "type";
-//     caption = captionElement.html();
-//     captionLength = caption.length;
-//     erase();
-//   } 
-//   else{
-//     grabbedText = navigationArray[0][0];
-//     caption = '// ' + grabbedText ;
-//     type();
-//     cursor = "delete";
-//   }
-// });

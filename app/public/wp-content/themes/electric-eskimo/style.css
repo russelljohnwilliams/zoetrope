@@ -559,6 +559,7 @@ textarea {
 navigation-button
 . . . . . . . . . . . . . . . . . . . . . . . . . . */
 
+
 #masthead{
 /*	position: absolute;
 z-index: 5;*/
@@ -607,13 +608,25 @@ navigation-drawer
 	z-index: 100;
 }
 
+
+#primary-menu a{
+	    /*border-right: 1px solid red;*/
+	    animation: blink 1s;
+	    animation-iteration-count: infinite;
+	    background: black;
+	}
+
+	@keyframes blink { 50% { border-color: #343D46 ; }}
+
+
+
 #primary-menu{
 	z-index: 500;
 	position: fixed;
 	height: 100%;
 	/*background: grey;*/
 	overflow-x: hidden;
-	/*padding-top: 40vh;*/
+	padding-top: 20vh;
 	transition: 1.2s;
 	/*box-shadow: 0 0 50px rgba(0,0,0,.5);*/
 	/*width: 20%;*/
@@ -1471,6 +1484,7 @@ object {
 		padding-top: 150px;
 		height: 100vh;
 	}
+
 
 	#primary-menu ul{
 		margin-top: 75px;
