@@ -272,11 +272,10 @@ jQuery("p:contains('"+char+"')").each(function () {
 var captionLength = 0;
 var caption = '';
 var cursor = 'type';
-var grabbedText = '';
 var captionElement ='';
 var navigationTextArray = [];
 var navigationElemArray = [];
-
+var int = '0';
 jQuery(document).ready(function() {
   cycleThroughMenuItems();
 });
@@ -298,19 +297,19 @@ function createMenuButton(){
 
 function createNavigationLinks(){
   if (cursor == "delete"){
-    cursor = "type";
-    caption = captionElement.html();
+    captionElement = navigationElemArray[int-1];
+
+    caption ='// ' + navigationTextArray[int-1];
     captionLength = caption.length;
     erase();
+    int --;
   } 
   else{
-    addCursor(navigationElemArray[0])
-    grabbedText = navigationTextArray[0];
-    navigationTextArray.shift();
-    captionElement = navigationElemArray[0];
-    caption = '// ' + grabbedText;
+    addCursor(navigationElemArray[int])
+    captionElement = navigationElemArray[int];
+    caption ='// ' + navigationTextArray[int];
     type();
-
+    int ++;
   };
 }
 
@@ -318,9 +317,8 @@ function type() {
   captionElement.html(caption.substr(0, captionLength++));
   if(captionLength < caption.length+1){
     setTimeout('type()', 180);
-  }else if(captionLength == caption.length+1){
-    removeCursor(navigationElemArray[0])
-    navigationElemArray.shift();
+  }else if(captionLength == caption.length+1 && navigationElemArray.length > int){
+    removeCursor(navigationElemArray[int-1])
     captionLength = 0;
     createNavigationLinks();
   }else{
@@ -331,12 +329,20 @@ function type() {
 }
 
 function erase() {
+
   captionElement.html(caption.substr(0, captionLength--));
-  if(captionLength >= 0){
-    setTimeout('erase()', 50);
+  if(captionLength == -1 && navigationElemArray.length < int+2){
+    removeCursor(navigationElemArray[int])
+    captionLength = caption.length;
+    createNavigationLinks();
+
+  }else if(captionLength >= 0){
+    setTimeout('erase()', 100);
   }else{
     captionLength = 0;
     caption = '';
+    cursor = "type";
+
   };
 }
 
@@ -345,6 +351,6 @@ function removeCursor(elem){
 }
 
 function addCursor(elem){
-  elem.css({"border-right": "8px solid red"})
+  elem.css({"border-right": "8px solid #EB5F66"})
 }
 

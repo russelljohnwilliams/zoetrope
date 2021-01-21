@@ -610,13 +610,12 @@ navigation-drawer
 
 
 #primary-menu a{
-	    /*border-right: 1px solid red;*/
-	    animation: blink 1s;
-	    animation-iteration-count: infinite;
-	    background: black;
-	}
+	animation: blink 1s;
+	animation-iteration-count: infinite;
+	background: black;
+}
 
-	@keyframes blink { 50% { border-color: #343D46 ; }}
+@keyframes blink { 50% { border-color: #343D46 ; }}
 
 
 
@@ -654,11 +653,11 @@ navigation-drawer
 	width: 100%;
 	top: 3px;
 	transition: 0.5s;
-color: #C6CCD7;
+	color: #C6CCD7;
 }
 
 #primary-menu a:hover{
-	color: black;
+	color: #EB5F66;
 	opacity: 1;
 	transition: 0.5s;
 	z-index: 10;
@@ -672,7 +671,7 @@ color: #C6CCD7;
 	height: 55px;
 	width: 100%;
 }
-
+/*
 .menu-item:nth-child(1) a{
 	z-index: 9;
 	opacity: 0.8;
@@ -697,7 +696,7 @@ color: #C6CCD7;
 	z-index: 5;
 	opacity: 0.1;
 }
-
+*/
 .closed{
 	left: 80vw;
 }
