@@ -72,7 +72,7 @@ html {
 
 body {
 	margin: 0;
-	background: #343D46;
+	background: #212121;
 }
 
 
@@ -84,7 +84,7 @@ body {
 
 h1 {
 	margin:0;
-	font-size: 14px;
+	font-size: 1em;
 }
 
 /* Grouping content
@@ -210,6 +210,17 @@ textarea {
 	font-size: 100%; /* 1 */
 	line-height: 1.15; /* 1 */
 	margin: 0; /* 2 */
+}
+
+button, input[type="submit"], input[type="reset"] {
+	background: none;
+	color: inherit;
+	border: none;
+	padding: 0;
+	font: inherit;
+	cursor: pointer;
+	outline: inherit;
+	font-size: 16px;
 }
 
 /**
@@ -560,18 +571,42 @@ navigation-button
 . . . . . . . . . . . . . . . . . . . . . . . . . . */
 
 
+.navigation-button{ 
+	grid-area: nav;
+}
+.site-branding{ 
+	grid-area: logo; 
+}
+
 #masthead{
-/*	position: absolute;
-z-index: 5;*/
+	display: grid;
+	grid-template-areas:
+	'logo nav';
+	padding: 50px;
+	font-size: 1.2em;
+	grid-template-columns: 70% 30%;
+	position: absolute;
+	z-index: 4;
+	width: calc(100% - 100px);
 }
 
 #navigation-button{
-	z-index: 60;
-	position: relative;
-	float: right;
-	text-align: left;
-	margin-right: 35px;
+	z-index: 600;
+	text-align: right;
+	right: 0;
 	cursor: default;
+	padding-right: 25px;
+	background: #212121;
+	display: inline-block;
+	float: right;
+	font-size: 1em;
+}
+
+.fixed{
+	position: fixed;
+	/*background: #212121*/
+	top: 10px;
+	margin-right:50px;
 }
 
 .bar{
@@ -583,7 +618,8 @@ z-index: 5;*/
 }
 
 #navigation-button:hover{
-	opacity: 0.7;
+	/*opacity: 0.5;*/
+	background: black;
 }
 
 .change .bar3 {
@@ -602,11 +638,18 @@ z-index: 5;*/
 /* . . . . . . . . . . . . . . . . . . . . . . . . . .
 navigation-drawer
 . . . . . . . . . . . . . . . . . . . . . . . . . . */
-.sticky{
-	position: sticky;
-	top: 10px;
-	z-index: 100;
+#site-logo{
+	margin-left: 25px;
 }
+
+.delete{
+	position: fixed;
+	top: 10px;
+	z-index: 1;
+	background: #212121;
+}
+
+
 
 
 #primary-menu a{
@@ -615,22 +658,20 @@ navigation-drawer
 	background: black;
 }
 
-@keyframes blink { 50% { border-color: #343D46 ; }}
+@keyframes blink { 50% { border-color: #212121 ; }}
 
+.menu-button-txt{
+	display: inline-block;
+}
 
 
 #primary-menu{
 	z-index: 500;
+	margin-top: 100px;
+	margin-left: 0;
+	padding: 0 30px 0;
 	position: fixed;
-	height: 100%;
-	/*background: grey;*/
-	overflow-x: hidden;
-	padding-top: 20vh;
-	transition: 1.2s;
-	/*box-shadow: 0 0 50px rgba(0,0,0,.5);*/
-	/*width: 20%;*/
-	box-sizing: border-box;
-	margin: 0;
+
 }
 
 #primary-menu li{
@@ -670,43 +711,6 @@ navigation-drawer
 	z-index: 40;
 	height: 55px;
 	width: 100%;
-}
-/*
-.menu-item:nth-child(1) a{
-	z-index: 9;
-	opacity: 0.8;
-}
-
-.menu-item:nth-child(2)  a{
-	z-index: 8;
-	opacity: 0.6;
-}
-
-.menu-item:nth-child(3)  a{
-	z-index: 7;
-	opacity: 0.4;
-}
-
-.menu-item:nth-child(4)  a{
-	z-index: 6;
-	opacity: 0.2;
-}
-
-.menu-item:nth-child(5)  a{
-	z-index: 5;
-	opacity: 0.1;
-}
-*/
-.closed{
-	left: 80vw;
-}
-
-.open{
-	/*left: 50%;*/
-}
-
-#menu-item-467 a{
-	/*display: none;*/
 }
 
 #cursor{
@@ -918,6 +922,10 @@ left: 0;
 ## Posts and pages
 --------------------------------------------------------------*/
 
+.entry-content{
+	/*min-height: 100vh;*/
+}
+
 .post-thumbnail{
 	width: calc(50VW - 25px);
 	height: calc(100vh - 25px);
@@ -952,7 +960,7 @@ left: 0;
 .entry-content{
 	position: relative;
 	width: 100%;
-	background: #1A1A1D;
+	background: #212121;
 	/* 	min-height: calc(100vh - 50px); */
 	box-sizing: border-box;
 }
@@ -970,7 +978,7 @@ left: 0;
 }
 
 .post-template-default .post-thumbnail{
-	background: #1A1A1D;
+	background: #212121;
 }
 
 .more{
@@ -1032,11 +1040,17 @@ left: 0;
 	margin: 0 0 25px 0;
 }
 
+
+
 .wp-block-image img{
+	/*width: auto;
+	object-fit: cover;
+	position: relative;
+	min-width: 100%;*/
 	width: auto;
 	object-fit: cover;
 	position: relative;
-	min-width: 100%;
+	height: auto;
 }
 
 .page-print .wp-block-image{
@@ -1051,7 +1065,7 @@ left: 0;
 }
 
 .post{
-	background:  #1A1A1D;
+	background:  #212121;
 	overflow: auto;
 	width: 100%;
 }
@@ -1081,7 +1095,7 @@ left: 0;
 }
 
 .home .site-branding{
-	display: none;
+	/*display: none;*/
 }
 
 .wp-block-image figcaption{
@@ -1228,7 +1242,7 @@ object {
 
 .donut{
 	border: solid 1px white;
-	/*border: solid 1px #343D46;*/
+	/*border: solid 1px #212121;*/
 	height: 8px;
 	width: 8px;
 	border-radius: 100%;
@@ -1257,7 +1271,7 @@ object {
 
 .rodblur{
 	position: absolute;
-	background: #343D46;
+	background: #212121;
 	height: 10px;
 	width: 1px;
 	border-radius: 25px;
@@ -1268,7 +1282,7 @@ object {
 
 .spotblur{
 	position: absolute;
-	background: #343D46;
+	background: #212121;
 	height: 2px;
 	width: 2px;
 	border-radius: 100%;
@@ -1283,6 +1297,7 @@ object {
 	position: absolute;
 	top: 0;
 	left: 0;
+	/*display: none;*/
 }
 
 #confetti{
@@ -1323,9 +1338,9 @@ object {
 
 #first-section{
 	z-index: 3;
-	margin-top: 25px;
-	margin-left: 25px;
-	min-height: 90vh;	
+	padding-top: 25px;
+	padding-left: 25px;
+	min-height: 89vh;	
 }
 
 #first-section p, header p{
@@ -1368,15 +1383,9 @@ object {
 	letter-spacing: 0.5rem;
 }
 
-
-
-
-
 /*--------------------------------------------------------------
 ## second section
 --------------------------------------------------------------*/
-
-
 
 .pixel{
 	display: inline-block;
@@ -1390,13 +1399,53 @@ object {
 	background: #5EB3B3
 }
 
+.home-page-section{
+	background: #5EB3B3
+
+}
+
 .pixel-wrapper{
-	/*width: 100vw;*/
 	height: calc(100vw / 50);
-	background: #343D46;	
+	background: #212121;	
+}
+
+.column-grid{
+	display: grid;
+	grid-column-gap: 50px;
+	grid-template-columns: 30% 30% 30%;
+	padding: 40px 150px;
+	min-height: 90vh;
+	margin-bottom: 0;
+}
+
+.wp-block-columns{
+
 }
 
 
+.wp-block-column{
+	padding: 20px;
+	font-size: 15px;
+	text-align: center;
+	margin: 0 !important;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+
+/*Quote Section*/
+
+.quote-section{
+	background: #C6CCD7;
+	color: black !important;
+}
+
+
+.quote-section .bracket{
+	color: black !important;
+
+}
 
 
 
@@ -1455,6 +1504,18 @@ object {
 }
 
 
+/*bootstrapish*/
+
+.large-height--two-thirds{
+	min-height: 66vh;
+}
+
+/*colours*/
+
+.white{
+	background: #C6CCD7;
+}
+
 
 /*--------------------------------------------------------------
 ### media queries
@@ -1474,7 +1535,7 @@ object {
 
 
 	/* menu */
-
+ 
 
 	#primary-menu{
 		width: 100%;
@@ -1612,7 +1673,7 @@ object {
 		font-size: 0.3rem;
 		letter-spacing: 0.4rem;
 		width: 100%;
-		background: #1A1A1D;
+		background: #212121;
 		left: 0;
 		height: 50px;
 		display: inline-table;
@@ -1622,10 +1683,6 @@ object {
 		width: 92vw;
 		margin: 5px;
 		float: none;
-	}
-
-	wp-block-image img {
-		min-width: 69%;
 	}
 
 	.post-template-default .entry-content{

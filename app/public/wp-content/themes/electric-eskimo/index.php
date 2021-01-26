@@ -19,7 +19,7 @@ get_header();
 <div id="primary" class="content-area">
 	<main id="main" class="site-main">
 		
-		<div id="first-section" class="above-the-fold"><p>&lt;html&gt;</p><br>
+<!-- 		<div id="first-section" class="above-the-fold"><p>&lt;html&gt;</p><br>
 			<p>&lt;head&gt;</p><br>
 			<div class="sticky"><p>&lt;title&gt;</p><h1>zoetrope</h1><p>&lt;/title&gt;</p></div>
 			<p>&lt;/head&gt;</p><br>
@@ -28,17 +28,13 @@ get_header();
 				web design and development<br>
 				specializing in e-commerce<br>
 			</span>
-			<p>&lt;/body&gt;</p><br>
+			<p>&lt;/body&gt;</p>
 			
-				<p class="console">
-				    <span></span><span id="caption"></span>
-				    <!-- <span id="cursor">|</span> -->
-				</p>
-			</div>
-		<!-- 	<div id="confetti-wrapper">
+			</div> -->
+			<div id="confetti-wrapper">
 				<div id="confetti">
 				</div>
-			</div> -->
+			</div>
 		</div>
 
 		<div id="second-section">

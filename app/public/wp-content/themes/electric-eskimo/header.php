@@ -32,13 +32,25 @@
 		<div class="site-branding">
 			<?php
 			the_custom_logo();
-			if ( is_front_page() && is_home() ) :
+			if ( is_front_page() ) :
 				?>
-				<h1 class="site-title"><a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home"><?php bloginfo( 'name' ); ?></a></h1>
+				<p>&lt;head&gt;</p><br>
+				<div id="site-logo" class="sticky"><p>&lt;title&gt;</p><h1>zoetrope</h1><p>&lt;/title&gt;</p></div>
+				<p>&lt;/head&gt;</p><br>
+				<p>&lt;body&gt;</p><br>
+				<span class="blurb">
+					web design and development<br>
+					specializing in e-commerce<br>
+				</span>
+				<p>&lt;/body&gt;</p><br>
+				
 				<?php
 			else :
 				?>
-				<p class="site-title"><a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home"><?php bloginfo( 'name' ); ?></a></p>
+	
+	<div class="sticky"><p>&lt;title&gt;</p><h1>zoetrope</h1><p>&lt;/title&gt;</p></div>
+	
+
 				<?php
 			endif;
 			$electric_eskimo_description = get_bloginfo( 'description', 'display' );
@@ -49,7 +61,7 @@
 		</div><!-- .site-branding -->
 
 		<nav id="site-navigation" class="main-navigation">
-			<div id="navigation-button"><p>&lt;nav&gt;</p>menu<p>&lt;/nav&gt;</p></div>
+			<button id="navigation-button"><p>&lt;nav&gt;</p><span class="menu-button-txt">open navigation</span><p>&lt;/nav&gt;</p></button>
 <!-- 			&lt;! &hyphen; &hyphen;     
 			&hyphen; &hyphen; &gt; -->
 			<?php
