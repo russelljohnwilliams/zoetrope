@@ -18,19 +18,46 @@ var clone = 'false';
 jQuery(document).ready(function () {
  size = (jQuery(window).width() - border) / 4;
  starConfetti();
- starHoverEffect();
+ // starHoverEffect();
  startHTMLStyling();
  startPixels();
  stickyLogo = jQuery("#site-logo").offset().top;
  stickyNav = jQuery("#navigation-button").offset().top;
 });
 
-jQuery(window).resize(function(){
-  size = (jQuery(window).width() - border)  / 4
-  createHoverOverPostEffect(jQuery(".script-post"));
-  setImageCSS(jQuery(".script-post"), size);
-  createHoverOverImageEffect(jQuery(".page-print .wp-block-image"), 4);
-})
+// add 'highlight' class to element when navigation anchor link is clicked 
+
+jQuery(document).ready(function(){
+    jQuery('a[href*="#"]').click(function(){
+      var that = jQuery(this).attr('href')
+      var elem = jQuery(that).children().first()
+      if(jQuery(elem).hasClass("highlight")){console.log("highlight")}else{
+        jQuery('.highlight').removeClass('highlight');
+        jQuery(elem).addClass('highlight');
+      }
+    });
+});
+
+// add 'highlight' class when element has mouseover
+
+  jQuery(document).ready(function(){
+    var post = jQuery('.script-post')
+    if (windowWidth > 600){
+      post.mouseover(function(){
+        post.find('.script-post-thumbnail').removeClass('highlight')
+        jQuery(this).find('.script-post-thumbnail').addClass('highlight');
+      });
+      post.mouseout(function(){
+        jQuery(this).find('.script-post-thumbnail').removeClass('highlight');
+      });
+    }
+  });
+
+// jQuery(window).resize(function(){
+//   size = (jQuery(window).width() - border)  / 4
+//   createHoverOverPostEffect(jQuery(".script-post"));
+//   createHoverOverImageEffect(jQuery(".page-print .wp-block-image"), 4);
+// })
 
 jQuery(window).scroll(function() {  
     if (jQuery(window).scrollTop() < stickyLogo && clone == 'true') {
@@ -75,66 +102,64 @@ jQuery(document).ready(function(){
 
 
 
-function setImageCSS(post, size, filter, mode){
-  jQuery(post).find('img').css({'filter': filter, 'height': size+'px', 'width': size+'px'});
-}
+// function setImageCSS(post, size, filter, mode){
+//   jQuery(post).find('img').css({'filter': filter, 'width': size+'px'});
+// }
 
 //  - - - - creates hover over posts to change text and image styling - - - - 
 
 
 
-function createHoverOverPostEffect(post, divisible){
-  jQuery(document).ready(function(){
-    size = (jQuery(window).width() - border) / divisible;
-    setImageCSS(post, size)
-    if (windowWidth > 600){
+// function createHoverOverPostEffect(post){
+//   jQuery(document).ready(function(){
+//     // size = (jQuery(window).width() - border) / divisible;
+//     size = (jQuery('.script-post').height());
+//     if (windowWidth > 600){
 
-      post.mouseover(function(){
-        jQuery(this).find('.script-post-thumbnail').addClass('vignette');
-        size = (jQuery(window).width() - border) / divisible + 20
-        setImageCSS(this, size, "none");
-        jQuery(this).find('a').css({'color': 'white'});
-      });
-      post.mouseout(function(){
-        size = (jQuery(window).width() - border) / divisible
-        setImageCSS(this, size, "grayscale(1)");
-        jQuery(this).find('a').css({'color': 'black'});
-        jQuery(this).find('.script-post-thumbnail').removeClass('vignette');
-      });
-    }
-  });
+//       post.mouseover(function(){
+//         jQuery(this).find('.script-post-thumbnail').addClass('vignette');
+//         // setImageCSS(this, (size + 200), "none");
+//         // jQuery(this).find('a').css({'color': 'white'});
+//       });
+//       post.mouseout(function(){
+//         // setImageCSS(this, size, "grayscale(1)");
+//         // jQuery(this).find('a').css({'color': 'black'});
+//         jQuery(this).find('.script-post-thumbnail').removeClass('vignette');
+//       });
+//     }
+//   });
 
-}
+// }
 //  - - - - creates hover over images to change text and image styling - - - - 
 
-function setFigcaptionCSS(post, addClass, opacity){
-  jQuery(post).find('figcaption').addClass(addClass).css({'opacity': opacity});
-}
+// function setFigcaptionCSS(post, addClass, opacity){
+//   jQuery(post).find('figcaption').addClass(addClass).css({'opacity': opacity});
+// }
 
-function createHoverOverImageEffect(post, divisible){
-  if (windowWidth > 600){
-    size = (jQuery(window).width()) / divisible;
+// function createHoverOverImageEffect(post, divisible){
+//   if (windowWidth > 600){
+//     size = (jQuery(window).width()) / divisible;
 
-    setImageCSS(post, size);
-    post.find('img').css({'height': height+'px', 'width': height+'px'});
-    color = post.css('background-color');
-    post.mouseover(function(){
-      size = (jQuery(window).width()) / divisible + 12
-      setImageCSS(this, size, "none");
-      color = jQuery(this).css('background-color');
-      jQuery(this).css({'background-color': 'white'});
-      setImageCSS(this, size, "grayscale(0)");
-      setFigcaptionCSS(this, 'figcaption-show', 1);
-    });
-    post.mouseout(function(){
-      size = (jQuery(window).width()) / divisible
-      setImageCSS(this, size, "none");
-      jQuery(this).css({'background-color': color});
-      setImageCSS(this, size, "grayscale(1)");
-      setFigcaptionCSS(this, 'figcaption-show', 0);
-    });
-  }
-}
+//     // setImageCSS(post, size);
+//     post.find('img').css({'height': height+'px', 'width': height+'px'});
+//     color = post.css('background-color');
+//     post.mouseover(function(){
+//       size = (jQuery(window).width()) / divisible + 12
+//       // setImageCSS(this, size, "none");
+//       color = jQuery(this).css('background-color');
+//       jQuery(this).css({'background-color': 'white'});
+//       // setImageCSS(this, size, "grayscale(0)");
+//       setFigcaptionCSS(this, 'figcaption-show', 1);
+//     });
+//     post.mouseout(function(){
+//       size = (jQuery(window).width()) / divisible
+//       // setImageCSS(this, size, "none");
+//       jQuery(this).css({'background-color': color});
+//       // setImageCSS(this, size, "grayscale(1)");
+//       setFigcaptionCSS(this, 'figcaption-show', 0);
+//     });
+//   }
+// }
 
 // Function to open up a layer which upon to show an image
 
@@ -317,7 +342,6 @@ function createNavigationLinks(){
     captionLength = caption.length;
     erase();
     int --;
-    console.log("booooosh")
     jQuery('.menu-button-txt').text('open navigation')
   } 
   else{
@@ -326,7 +350,6 @@ function createNavigationLinks(){
     caption ='// ' + navigationTextArray[int];
     type();
     int ++;
-    console.log("baaaaaash")
 
     jQuery('.menu-button-txt').text('close navigation')
   };
@@ -335,7 +358,7 @@ function createNavigationLinks(){
 function type() {
   captionElement.html(caption.substr(0, captionLength++));
   if(captionLength < caption.length+1){
-    setTimeout('type()', 70);
+    setTimeout('type()', 50);
   }else if(captionLength == caption.length+1 && navigationElemArray.length > int){
     removeCursor(navigationElemArray[int-1])
     captionLength = 0;
@@ -358,7 +381,7 @@ function erase() {
     captionLength = caption.length;
     createNavigationLinks();
   }else{
-    setTimeout('erase()', 70);
+    setTimeout('erase()', 50);
   };
 }
 
@@ -378,10 +401,10 @@ function starConfetti(){
   makeConfetti(rodCount, "rodblur");
 }
 
-function starHoverEffect(){
- createHoverOverPostEffect(jQuery(".script-post"), 4);
- createHoverOverImageEffect(jQuery(".page-print .wp-block-image"), 4); 
-}
+// function starHoverEffect(){
+//  createHoverOverPostEffect(jQuery(".script-post"));
+//  createHoverOverImageEffect(jQuery(".page-print .wp-block-image")); 
+// }
 
 function startHTMLStyling(){
  styleHTML('/');
@@ -394,5 +417,4 @@ function startPixels(){
  makePixels('#second-section', 6, 3, 2, 50);
  makePixels('#second-section', 9, 6, 3, 50); 
 }
-
 

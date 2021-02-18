@@ -61,6 +61,13 @@ Nicolas Gallagher and Jonathan Neal https://necolas.github.io/normalize.css/
 html {
 	line-height: 1.15; /* 1 */
 	-webkit-text-size-adjust: 100%; /* 2 */
+	scroll-behavior: smooth;
+}
+
+@media screen and (prefers-reduced-motion: reduce) {
+	html {
+		scroll-behavior: auto;
+	}
 }
 
 /* Sections
@@ -583,6 +590,7 @@ navigation-button
 	grid-template-areas:
 	'logo nav';
 	padding: 50px;
+	padding-bottom: 0;
 	font-size: 1.2em;
 	grid-template-columns: 70% 30%;
 	position: absolute;
@@ -669,7 +677,7 @@ navigation-drawer
 	z-index: 500;
 	margin-top: 100px;
 	margin-left: 0;
-	padding: 0 30px 0;
+	padding: 0;
 	position: fixed;
 
 }
@@ -820,11 +828,16 @@ left: 0;
 }
 
 .script-post{
-	width: 50%;
+/*	width: 50%;
 	float: left;
 	margin-bottom: 0;
 	height: calc(25vw - 12.5px);
+	cursor: pointer;*/
+	width: 30%;
+	margin-bottom: 0;
+	height: 200px;
 	cursor: pointer;
+	margin-left: 40%;
 }
 
 .script-post img{
@@ -860,17 +873,18 @@ left: 0;
 }
 
 .script-post-thumbnail{
-	width: 50%;
-	height: calc(25vw - 12.5px);
+	/*width: 50%;*/	
+	/*height: calc(25vw - 12.5px);*/
+	height: 200px;
 	margin: 0;
 	overflow: hidden;
-}
+	box-sizing: border-box;
+	-webkit-transition: all 0.5s ease;
+	-moz-transition: all 0.5s ease;
+	transition: all 0.5s ease;
+	/*border: solid #212121 1px;*/
+	padding: 0px;
 
-.script-post-thumbnail{
-	float: right;
-}
-.script-post:nth-child(4n + 2) .script-post-thumbnail, .script-post:nth-child(4n + 1) .script-post-thumbnail{
-	float: left;
 }
 
 .script-post-thumbnail img{
@@ -881,8 +895,8 @@ left: 0;
 	position: relative;
 	filter: grayscale(1);
 	mix-blend-mode: multiply;
-	transition: 0.6s;
 	object-fit: cover;
+
 }
 
 .script-post-title{
@@ -893,29 +907,41 @@ left: 0;
 }
 
 .script-post-title a, .script-post-thumbnail img{
-	transition: 0.8s;
+	/*transition: 0.8s ease-in-out;*/	
 }
 
 .script-post-title-wrapper{
-	height: 100%;
+/*	height: 100%;
 	width: 50%;
 	float: left;
 	position: relative;
-	text-align: center;
+	text-align: center;*/
 }
 
-.vignette{
+/*.script-post-thumbnail:hover, */
+.highlight{
 	height: 100%;
-	width: 50%;
+	width: 100%;
 	position: relative;
 	top: 0;
 	left: 0;
 	mix-blend-mode: normal;
 	background-color: white;
+	/*box-shadow: inset 10px 10px 100px black;*/
+	box-shadow: 0px 0px 0px 8px #212121 inset;
+	/*border: solid #212121 10px;*/
+	padding: 10px;
+	/*transition: 0.8s;*/
 }
 
-.vignette{
-	box-shadow: inset 0 0 100px black;
+	
+
+
+/*.script-post-thumbnail:hover img, */
+.highlight img{
+	/*height: 300px;*/
+	filter: grayscale(0);
+	/*object-fit: scale-down;*/
 }
 
 /*--------------------------------------------------------------
@@ -1535,7 +1561,7 @@ object {
 
 
 	/* menu */
- 
+
 
 	#primary-menu{
 		width: 100%;
